@@ -1,5 +1,4 @@
 name: redis-ai-java-resources
-version: "3"
 services:
   jupyter:
     build: ./jupyter
@@ -8,7 +7,13 @@ services:
     volumes:
       - ./notebooks:/home/jovyan/notebooks
       - ./data:/home/jovyan/data
-  vecsim:
-    image: redis/redis-stack:edge
-    ports:
-      - "6379:6379"
+  redis-java:
+      image: redis/redis-stack:latest
+      ports:
+        - "6379:6379"  # Redis database port
+        - "8001:8001"  # RedisInsight port
+      volumes:
+        - redis-data:/data  # Persist Redis data
+
+volumes:
+  redis-data:
