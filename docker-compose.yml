@@ -4,6 +4,8 @@ services:
     build: ./jupyter
     ports:
       - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
     volumes:
       - ./notebooks:/home/jovyan/notebooks
       - ./data:/home/jovyan/data
