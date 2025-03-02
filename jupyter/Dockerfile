@@ -41,5 +41,10 @@ RUN conda env update -f /tmp/environment.yml && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
+# Install jupyter_darkmodern theme
+RUN pip install jupyter_darkmodern && \
+    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "/home/${NB_USER}"
+
 WORKDIR /home/jovyan
 USER $NB_UID
