@@ -1,0 +1,56 @@
+package org.jjavaglue.core;
+
+/**
+ * Environment utilities for Java Jupyter notebooks.
+ * Provides constants and utilities for working with the Jupyter environment.
+ */
+public class Env {
+  /**
+   * Base directory for notebooks in the Jupyter container
+   */
+  public static final String NOTEBOOKS_DIR = "/home/jovyan/notebooks/";
+
+  /**
+   * Data directory within notebooks
+   */
+  public static final String DATA_DIR = NOTEBOOKS_DIR + "data/";
+
+  /**
+   * Helper method to get a path relative to the notebooks directory
+   *
+   * @param relativePath path relative to the notebooks directory
+   * @return full path
+   */
+  public static String getNotebooksPath(String relativePath) {
+    return NOTEBOOKS_DIR + relativePath;
+  }
+
+  /**
+   * Helper method to get a path relative to the data directory
+   *
+   * @param filename name of the file in the data directory
+   * @return full path to the file
+   */
+  public static String getDataPath(String filename) {
+    return DATA_DIR + filename;
+  }
+
+  /**
+   * Print a message to the console (shorthand for System.out.println)
+   *
+   * @param message the message to print
+   */
+  public static void println(Object message) {
+    System.out.println(message);
+  }
+
+  /**
+   * Print a formatted message to the console (shorthand for System.out.printf)
+   *
+   * @param format the format string
+   * @param args   the arguments to format
+   */
+  public static void printf(String format, Object... args) {
+    System.out.printf(format, args);
+  }
+}

@@ -16,12 +16,12 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-class DSTest {
+public class DSTest {
 
   private DataFrame sampleDataFrame;
 
   @BeforeEach
-  void setup() {
+  public void setup() {
     // Create a sample DataFrame for testing
     Map<String, List<?>> data = new HashMap<>();
     data.put("id", Arrays.asList(1, 2, 3, 4, 5));
@@ -33,7 +33,7 @@ class DSTest {
   }
 
   @Test
-  void testCreate() {
+  public void testCreate() {
     // Test creating a DataFrame from columns
     String[] columns = { "col1", "col2" };
     List<Integer> col1Data = Arrays.asList(1, 2, 3);
@@ -57,7 +57,7 @@ class DSTest {
   }
 
   @Test
-  void testFromMap() {
+  public void testFromMap() {
     Map<String, List<?>> data = new HashMap<>();
     data.put("A", Arrays.asList(1, 2, 3));
     data.put("B", Arrays.asList("x", "y", "z"));
@@ -80,7 +80,7 @@ class DSTest {
   }
 
   @Test
-  void testSort() {
+  public void testSort() {
     // Verify the initial order of the DataFrame
     assertThat(sampleDataFrame.height()).isEqualTo(5);
 
@@ -105,7 +105,7 @@ class DSTest {
   }
 
   @Test
-  void testCsvReadWrite() throws IOException {
+  public void testCsvReadWrite() throws IOException {
     // Create a temporary file for testing
     Path tempFile = Files.createTempFile("test-df", ".csv");
     try {
@@ -134,7 +134,7 @@ class DSTest {
   }
 
   @Test
-  void testDescribeDoesNotThrowException() {
+  public void testDescribeDoesNotThrowException() {
     // This test verifies that describe() doesn't throw exceptions
     assertThatCode(() -> {
       DS.describe(sampleDataFrame);
@@ -142,7 +142,7 @@ class DSTest {
   }
 
   @Test
-  void testShowDoesNotThrowException() {
+  public void testShowDoesNotThrowException() {
     // This test verifies that show() doesn't throw exceptions
     assertThatCode(() -> {
       DS.show(sampleDataFrame);

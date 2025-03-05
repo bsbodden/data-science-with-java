@@ -87,7 +87,7 @@ public class DS {
     TabularPrinter printer = new TabularPrinter();
     StringBuilder sb = new StringBuilder();
     printer.print(sb, df.head(rows));
-    System.out.println(sb.toString());
+    System.out.println(sb);
 
     // Print remaining rows count if truncated
     if (df.height() > rows) {
@@ -127,16 +127,13 @@ public class DS {
 
       // Check if this series can be converted to double
       try {
-        if (series instanceof DoubleSeries) {
-          DoubleSeries ds = (DoubleSeries) series;
+        if (series instanceof DoubleSeries ds) {
           System.out.printf("  %-20s min: %10.2f  max: %10.2f  mean: %10.2f  sum: %10.2f\n", col, ds.min(), ds.max(),
               ds.avg(), ds.sum());
-        } else if (series instanceof IntSeries) {
-          IntSeries is = (IntSeries) series;
+        } else if (series instanceof IntSeries is) {
           System.out.printf("  %-20s min: %10d  max: %10d  mean: %10.2f  sum: %10d\n", col, is.min(), is.max(),
               is.avg(), is.sum());
-        } else if (series instanceof LongSeries) {
-          LongSeries ls = (LongSeries) series;
+        } else if (series instanceof LongSeries ls) {
           System.out.printf("  %-20s min: %10d  max: %10d  mean: %10.2f  sum: %10d\n", col, ls.min(), ls.max(),
               ls.avg(), ls.sum());
         }
