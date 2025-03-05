@@ -19,6 +19,7 @@
     <module>core-glue</module>
     <module>dflib-glue</module>
     <module>jfreechart-glue</module>
+    <module>commons-math-glue</module>
   </modules>
 
   <properties>
@@ -29,6 +30,7 @@
     <!-- Dependency versions -->
     <dflib.version>2.0.0-M2</dflib.version>
     <jfreechart.version>1.5.5</jfreechart.version>
+    <commons-math.version>3.6.1</commons-math.version>
 
     <!-- Test Dependency versions -->
     <assertj.version>3.25.3</assertj.version>

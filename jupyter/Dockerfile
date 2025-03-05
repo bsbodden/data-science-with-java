@@ -40,6 +40,7 @@ RUN cat /home/jovyan/jjava-glue-classpath.txt >> classpath.txt
 RUN echo -n ":/home/jovyan/jjava-glue/core-glue/target/core-glue-0.1.0-SNAPSHOT.jar:" >> classpath.txt
 RUN echo -n ":/home/jovyan/jjava-glue/dflib-glue/target/dflib-glue-0.1.0-SNAPSHOT.jar:" >> classpath.txt
 RUN echo -n ":/home/jovyan/jjava-glue/jfreechart-glue/target/jfreechart-glue-0.1.0-SNAPSHOT.jar:" >> classpath.txt
+RUN echo -n ":/home/jovyan/jjava-glue/commons-math-glue/target/commons-math-glue-0.1.0-SNAPSHOT.jar:" >> classpath.txt
 
 # Install the kernel with classpath configuration
 WORKDIR /home/jovyan
