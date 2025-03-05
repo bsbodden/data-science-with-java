@@ -37,7 +37,9 @@ RUN echo -n "/home/jovyan/java/jjava.jar:" >> classpath.txt
 # Add the jjava-glue JARs to the classpath
 RUN cat /home/jovyan/jjava-glue-classpath.txt >> classpath.txt
 # Add the jjava-glue module JARs explicitly to ensure they're included
+RUN echo -n ":/home/jovyan/jjava-glue/core-glue/target/core-glue-0.1.0-SNAPSHOT.jar:" >> classpath.txt
 RUN echo -n ":/home/jovyan/jjava-glue/dflib-glue/target/dflib-glue-0.1.0-SNAPSHOT.jar:" >> classpath.txt
+RUN echo -n ":/home/jovyan/jjava-glue/jfreechart-glue/target/jfreechart-glue-0.1.0-SNAPSHOT.jar:" >> classpath.txt
 
 # Install the kernel with classpath configuration
 WORKDIR /home/jovyan
