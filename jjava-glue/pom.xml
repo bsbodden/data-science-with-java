@@ -28,6 +28,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Dependency versions -->
+    <jjava.version>1.0-M3</jjava.version>
     <dflib.version>2.0.0-M2</dflib.version>
     <jfreechart.version>1.5.5</jfreechart.version>
     <commons-math.version>3.6.1</commons-math.version>

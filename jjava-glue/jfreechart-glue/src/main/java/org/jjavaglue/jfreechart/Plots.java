@@ -6,6 +6,7 @@ import org.dflib.Hasher;
 import org.dflib.Series;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.annotations.XYLineAnnotation;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
@@ -20,6 +21,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.statistics.HistogramDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+import org.jjavaglue.dflib.DS;
 
 import javax.swing.*;
 import java.awt.*;
@@ -357,6 +359,72 @@ public class Plots {
     chartPanel.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
     chartPanel.setMinimumSize(new Dimension(250, 250));
     return chartPanel;
+  }
+
+  /**
+   * Creates a prediction vs actual scatter plot directly from model outputs.
+   * This eliminates the need for manual DataFrame creation.
+   *
+   * @param actual Series or array of actual values
+   * @param predicted array of predicted values
+   * @param title optional title for the plot
+   * @return JFreeChart object ready for display
+   */
+  public static JFreeChart predictionVsActual(Object actual, double[] predicted, String title) {
+    // Convert predictions to List
+    List<Double> predictionsList = new ArrayList<>();
+    for (double p : predicted) {
+      predictionsList.add(p);
+    }
+
+    // Handle different types of actual values
+    List actualsList;
+    if (actual instanceof Series) {
+      Series<?> series = (Series<?>) actual;
+      actualsList = new ArrayList<>();
+      for (int i = 0; i < series.size(); i++) {
+        actualsList.add(series.get(i));
+      }
+    } else if (actual instanceof List) {
+      actualsList = (List<?>) actual;
+    } else if (actual instanceof double[]) {
+      double[] array = (double[]) actual;
+      actualsList = new ArrayList<>();
+      for (double value : array) {
+        actualsList.add(value);
+      }
+    } else {
+      throw new IllegalArgumentException("Unsupported actual value type");
+    }
+
+    // Create DataFrame
+    DataFrame df = DS.create(
+        new String[]{"actual", "predicted"},
+        actualsList,
+        predictionsList
+    );
+
+    // Create scatter plot
+    JFreeChart chart = scatter(df, "actual", "predicted", null).getChart();
+
+    // Set title if provided
+    if (title != null) {
+      chart.setTitle(title);
+    }
+
+    // Add a 45-degree reference line
+    XYPlot plot = chart.getXYPlot();
+
+    // Get the data range to draw the line
+    double min = Math.min(plot.getDomainAxis().getLowerBound(), plot.getRangeAxis().getLowerBound());
+    double max = Math.max(plot.getDomainAxis().getUpperBound(), plot.getRangeAxis().getUpperBound());
+
+    // Create and add the diagonal reference line
+    XYLineAnnotation referenceLine = new XYLineAnnotation(min, min, max, max,
+        new BasicStroke(1.5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND), Color.RED);
+    plot.addAnnotation(referenceLine);
+
+    return chart;
   }
 
   /**

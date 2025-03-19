@@ -48,6 +48,11 @@
       <artifactId>dflib-jupyter</artifactId>
       <version>${dflib.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.dflib.jjava</groupId>
+      <artifactId>jupyter-jvm-basekernel</artifactId>
+      <version>${jjava.version}</version>
+    </dependency>
 
     <!-- Testing Dependencies -->
     <dependency>

@@ -32,6 +32,13 @@
       <version>${dflib.version}</version>
     </dependency>
 
+    <!-- DFLib Glue -->
+    <dependency>
+      <groupId>org.jjavaglue</groupId>
+      <artifactId>dflib-glue</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
     <!-- Testing Dependencies -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>

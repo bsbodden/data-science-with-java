@@ -1,5 +1,10 @@
 package org.jjavaglue.core;
 
+import java.io.Console;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 /**
  * Environment utilities for Java Jupyter notebooks.
  * Provides constants and utilities for working with the Jupyter environment.
@@ -52,5 +57,29 @@ public class Env {
    */
   public static void printf(String format, Object... args) {
     System.out.printf(format, args);
+  }
+
+  private static final Map<String, String> sessionEnv = new HashMap<>();
+
+  public static void promptAndSetEnv(String key) {
+    String value = readPassword(key + ": ");
+    sessionEnv.put(key, value);
+  }
+
+  public static String getEnv(String key) {
+    return sessionEnv.get(key);
+  }
+
+  private static String readPassword(String prompt) {
+    // Try to use Console first for password masking
+    Console console = System.console();
+    if (console != null) {
+      return new String(console.readPassword(prompt));
+    } else {
+      // Fall back to Scanner for environments without Console (like Jupyter)
+      System.out.print(prompt);
+      Scanner scanner = new Scanner(System.in);
+      return scanner.nextLine();
+    }
   }
 }
