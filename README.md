@@ -1,27 +1,25 @@
 # Redis AI Java Resources
 
-A self-contained Docker Application that provides a set of Jupyter Notebooks and associated utilities to work with Java and Java AI Libraries using Redis
+A self-contained Docker Application that provides a set of Jupyter Notebooks and associated utilities to work with Java and Java AI Libraries
 
 ## Overview
 
-This repository provides a Docker-based environment with Jupyter notebooks demonstrating how to:
-
-- TODO: List the notebooks
+This repository provides a Docker-based environment with Jupyter notebooks demonstrating how to create your own Data Science/ML/GenAI learning platform
 
 ## Getting Started
 
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/redis-developer/redis-ai-java-resources.git
-cd redis-ai-java-resources
+git clone git@github.com:bsbodden/data-science-with-java.git
+cd data-science-with-java.git
 ```
 
 ## Start the Docker Containers
 
 This will start two containers:
 - **jupyter**: A Jupyter notebook server with Java and Python kernels
-- **redis**: A Redis Stack instance with vector similarity search capabilities and RedisInsight GUI
+- **redis-java**: A Redis instance bundled with RedisInsight GUI
 
 ```bash
 docker compose up
@@ -32,41 +30,7 @@ docker compose up
 1. Monitor the Docker logs for the Jupyter server startup message
 2. Look for a URL like `http://127.0.0.1:8888/lab?token=<your_token>`
 3. Open this URL in your browser
-
-![Check the link at the bottom of the screen](./data/screenshot.png)
-
 4. Navigate to the notebooks directory and open one of the example notebooks
-
-![Open Getting Started Notebook](./data/screenshot2.png)
-
-5. Run the cells to see the examples in action
-
-## Customizing the Environment
-
-### Adding Python Packages
-
-To add additional Python packages:
-
-1. Edit the `environment.yml` file at the project root
-2. Add your required packages under the `dependencies` section:
-
-```yaml
-dependencies:
-  - pytorch
-  - torchtext
-  - gensim
-  # Add your packages here
-  - scikit-learn
-  - matplotlib
-```
-
-3. Rebuild the Docker containers:
-
-```bash
-docker compose down
-docker compose build
-docker compose up
-```
 
 ### Adding Java Libraries
 
